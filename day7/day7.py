@@ -1,7 +1,6 @@
 #https://adventofcode.com/2019/day/7
 
-#https://adventofcode.com/2019/day/5
-fin = open("/Users/Xuemei/Avinci_Club/Advent/day5/day5.in","r")
+fin = open("day7.in","r")
 
 intcode = fin.readline().split(",")
 intcode = [int(a) for a in intcode]
@@ -28,8 +27,9 @@ def paramMode(mode, value):
 def whatChanged(x,initial,final):
     print("position",x,"changed from",initial,"to",final)
 
-for amp in range(4):
+def compute(a,b):
     x = 0
+    first = True
     while x <= len(intcode):
         raw = str(intcode[x])
         opcode = int(raw[-1])
@@ -44,15 +44,19 @@ for amp in range(4):
             x += 4
             continue
         elif opcode == 3:
-            inputVal = input("number 3\n")
+            if First:
+                inputVal = a #input("number 3\n")
+            else:
+                inputVal = b
             intcode[intcode[x+1]] = inputVal
             x += 2
             continue
         elif opcode == 4:
             print("####OUTPUT####")
             print(intcode[intcode[x+1]])
-            x += 2
-            continue
+            return intcode[intcode[x+1]]
+            # x += 2
+            # continue
         elif opcode == 5:
             if paramMode(mode1, intcode[x+1]) != 0:
                 x = paramMode(mode2, intcode[x+2])
@@ -88,3 +92,7 @@ for amp in range(4):
         else:
             print("huh")
             break
+
+phaseSettings = [0,1,2,3,4]
+for ps1 in phaseSettings:
+    for ps2 in 
