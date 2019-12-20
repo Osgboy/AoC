@@ -1,6 +1,7 @@
 #https://adventofcode.com/2019/day/7
+from itertools import permutations
 
-fin = open("day7.in","r")
+fin = open("day7/day7.in","r")
 
 intcode = fin.readline().split(",")
 intcode = [int(a) for a in intcode]
@@ -24,8 +25,8 @@ def paramMode(mode, value):
     else:
         return value
 
-def whatChanged(x,initial,final):
-    print("position",x,"changed from",initial,"to",final)
+def whatChanged(position,initial,final):
+    print("position",position,"changed from",initial,"to",final)
 
 def compute(a,b):
     x = 0
@@ -40,14 +41,17 @@ def compute(a,b):
                 output = paramMode(mode1, intcode[x+1]) + paramMode(mode2, intcode[x+2])
             elif opcode == 2:
                 output = paramMode(mode1, intcode[x+1]) * paramMode(mode2, intcode[x+2])
+            whatChanged(intcode[x+3],intcode[intcode[x+3]],output)
             intcode[intcode[x+3]] = output
             x += 4
             continue
         elif opcode == 3:
-            if First:
+            if first:
                 inputVal = a #input("number 3\n")
+                first = False
             else:
                 inputVal = b
+            whatChanged(intcode[x+1],intcode[intcode[x+1]],inputVal)
             intcode[intcode[x+1]] = inputVal
             x += 2
             continue
@@ -88,11 +92,35 @@ def compute(a,b):
             continue
         elif opcode == 99:
             print("terminated")
+            assert opcode != 99, "terminated"
             break
         else:
             print("huh")
+            assert False, "huh"
             break
+ans = 0
 
-phaseSettings = [0,1,2,3,4]
-for ps1 in phaseSettings:
-    for ps2 in 
+###DAY 1
+#phaseSettings = permutations([0,1,2,3,4])
+# for perm in phaseSettings:
+#     temp = 0
+#     for setting in perm:
+#         temp = compute(setting,temp)
+#     if temp > ans:
+#         ans = temp
+
+###DAY 2
+phaseSettings = permutations([9,8,7,6,5])
+for perm in phaseSettings:
+    temp = 0
+    setting = 0
+    try:
+        while True:
+            temp = compute(perm[setting%5],temp)
+            setting += 1
+    except AssertionError:
+        print("##########ANS")
+        if temp > ans:
+            ans = temp
+
+print(ans)
