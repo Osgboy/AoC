@@ -1,4 +1,4 @@
-# advent-2019
-Advent of Code 2019
+# AoC
+Advent of Code 2019 - 2020
 
 https://adventofcode.com/
