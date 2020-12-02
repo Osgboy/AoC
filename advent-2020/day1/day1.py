@@ -1,7 +1,7 @@
-# https://adventofcode.com/2020/day/1
-fin = open("day1.in", "r")
+#https://adventofcode.com/2020/day/1
+with open("day1.in", "r") as fin:
+    entries = list(fin.readlines())
 
-entries = list(fin.readlines())
 entries = [int(x) for x in entries]
 
 for i in range(len(entries)):

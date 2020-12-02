@@ -12,7 +12,13 @@ print(passwords)
 
 count = 0
 for n in passwords:
-    if int(n[0]) <= n[3].count(n[2][0]) <= int(n[1]):
+    a = False
+    b = False
+    if n[3][int(n[0])-1] == n[2][0]:
+        a = True
+    if n[3][int(n[1])-1] == n[2][0]:
+        b = True
+    if a != b:
         count += 1
 
 print(count)
