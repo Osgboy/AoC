@@ -1,4 +1,4 @@
-#https://adventofcode.com/2020/day/2
+# https://adventofcode.com/2020/day/2
 with open("day2.in", "r") as fin:
     passwords = list(fin.readlines())
 

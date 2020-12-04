@@ -1,4 +1,4 @@
-#https://adventofcode.com/2020/day/2
+# https://adventofcode.com/2020/day/2
 with open("day2.in", "r") as fin:
     passwords = list(fin.readlines())
 
@@ -14,9 +14,9 @@ count = 0
 for n in passwords:
     a = False
     b = False
-    if n[3][int(n[0])-1] == n[2][0]:
+    if n[3][int(n[0]) - 1] == n[2][0]:
         a = True
-    if n[3][int(n[1])-1] == n[2][0]:
+    if n[3][int(n[1]) - 1] == n[2][0]:
         b = True
     if a != b:
         count += 1
