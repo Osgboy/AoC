@@ -1,5 +1,6 @@
 # https://adventofcode.com/2020/day/7
-
+import time
+start_time = time.time()
 with open("day7.in", "r") as fin:
     raw = list(fin.readlines())
 
@@ -11,7 +12,6 @@ for bag in raw:
     for cont in range(4, len(bag), 4):
         rule.append([bag[cont], bag[cont + 1] + bag[cont + 2]])
     rules.append(rule)
-    print(rule)
 
 count = 0
 
@@ -30,3 +30,4 @@ def search(color, m):
 
 search('shinygold', 1)
 print(count)
+print("--- %s seconds ---" % (time.time() - start_time))

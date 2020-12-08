@@ -1,3 +1,5 @@
+import time
+start_time = time.time()
 lines = open("day7.in").read().splitlines()
 
 bagList = [
@@ -46,3 +48,4 @@ def getCountBag(bag):
 print(len(searched) - 1)
 print("-------------")
 print(getCountBag("shiny gold") - 1)
+print("--- %s seconds ---" % (time.time() - start_time))
