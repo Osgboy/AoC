@@ -6,7 +6,7 @@ with open("day18.in", "r") as fin:
 ans = 0
 for prob in hw:
     prob = list(prob.strip().replace(' ', ''))
-    prob.insert(0,'(')
+    prob.insert(0, '(')
     prob.append(')')
     print(prob)
     while len(prob) > 1:
