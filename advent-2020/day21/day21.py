@@ -1,4 +1,4 @@
-# https://adventofcode.com/2020/day/20
+# https://adventofcode.com/2020/day/21
 
 with open("day21.in", "r") as fin:
     raw = fin.readlines()
