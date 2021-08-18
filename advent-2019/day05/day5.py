@@ -1,9 +1,10 @@
-#https://adventofcode.com/2019/day/5
-fin = open("/Users/Xuemei/Avinci_Club/Advent/day5/day5.in","r")
+# https://adventofcode.com/2019/day/5
+fin = open("day5s.in", "r")
 
 intcode = fin.readline().split(",")
 intcode = [int(a) for a in intcode]
 print(intcode)
+
 
 def getMode(raw):
     try:
@@ -16,16 +17,19 @@ def getMode(raw):
         mode2 = 0
     return mode1, mode2
 
+
 def paramMode(mode, value):
     if mode == 0:
-        print("intermediate val", intcode[value])
+        # print("intermediate val", intcode[value])
         return int(intcode[value])
     else:
         return value
 
-def whatChanged(x,initial,final):
-    print("position",x,"changed from",initial,"to",final)
-    
+
+def whatChanged(x, initial, final):
+    print("position", x, "changed from", initial, "to", final)
+
+
 x = 0
 while x <= len(intcode):
     raw = str(intcode[x])
@@ -34,52 +38,52 @@ while x <= len(intcode):
     mode1, mode2 = getMode(raw)
     if opcode == 1 or opcode == 2:
         if opcode == 1:
-            output = paramMode(mode1, intcode[x+1]) + paramMode(mode2, intcode[x+2])
+            output = paramMode(mode1, intcode[x + 1]) + paramMode(mode2, intcode[x + 2])
         elif opcode == 2:
-            output = paramMode(mode1, intcode[x+1]) * paramMode(mode2, intcode[x+2])
-        intcode[intcode[x+3]] = output
+            output = paramMode(mode1, intcode[x + 1]) * paramMode(mode2, intcode[x + 2])
+        intcode[intcode[x + 3]] = output
         x += 4
         continue
     elif opcode == 3:
         inputVal = input("number 3\n")
-        whatChanged(intcode[x+1],intcode[intcode[x+1]],inputVal)
-        intcode[intcode[x+1]] = inputVal
+        whatChanged(intcode[x + 1], intcode[intcode[x + 1]], inputVal)
+        intcode[intcode[x + 1]] = inputVal
         x += 2
         continue
     elif opcode == 4:
         print("####OUTPUT####")
-        print(intcode[intcode[x+1]])
+        print(intcode[intcode[x + 1]])
         x += 2
         continue
     elif opcode == 5:
-        if paramMode(mode1, intcode[x+1]) != 0:
-            x = paramMode(mode2, intcode[x+2])
+        if paramMode(mode1, intcode[x + 1]) != 0:
+            x = paramMode(mode2, intcode[x + 2])
             print("pointer moved to", x, "value", intcode[x])
         else:
             x += 3
         continue
     elif opcode == 6:
-        if paramMode(mode1, intcode[x+1]) == 0:
-            x = paramMode(mode2, intcode[x+2])
+        if paramMode(mode1, intcode[x + 1]) == 0:
+            x = paramMode(mode2, intcode[x + 2])
             print("pointer moved to", x, "value", intcode[x])
         else:
             x += 3
         continue
     elif opcode == 7:
-        print(mode1,mode2)
-        if paramMode(mode1, intcode[x+1]) < paramMode(mode2, intcode[x+2]):
-            intcode[intcode[x+3]] = 1
+        print(mode1, mode2)
+        if paramMode(mode1, intcode[x + 1]) < paramMode(mode2, intcode[x + 2]):
+            intcode[intcode[x + 3]] = 1
         else:
-            intcode[intcode[x+3]] = 0
+            intcode[intcode[x + 3]] = 0
         x += 4
         continue
     elif opcode == 8:
-        if paramMode(mode1, intcode[x+1]) == paramMode(mode2, intcode[x+2]):
-            whatChanged(paramMode(mode1, intcode[x+3]),intcode[paramMode(mode2, intcode[x+3])],1)
-            intcode[intcode[x+3]] = 1
+        if paramMode(mode1, intcode[x + 1]) == paramMode(mode2, intcode[x + 2]):
+            whatChanged(paramMode(mode1, intcode[x + 3]), intcode[paramMode(mode2, intcode[x + 3])], 1)
+            intcode[intcode[x + 3]] = 1
         else:
-            whatChanged(paramMode(mode1, intcode[x+3]),intcode[paramMode(mode2, intcode[x+3])],0)
-            intcode[intcode[x+3]] = 0
+            whatChanged(paramMode(mode1, intcode[x + 3]), intcode[paramMode(mode2, intcode[x + 3])], 0)
+            intcode[intcode[x + 3]] = 0
         x += 4
         continue
     elif opcode == 99:

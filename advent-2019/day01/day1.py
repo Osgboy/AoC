@@ -1,13 +1,11 @@
 #https://adventofcode.com/2019/day/1
-fin = open("day1.in","r")
+
+with open("day1.in","r") as fin:
+	masses = [x.strip() for x in fin.readlines()]
+
 sum1 = 0
 sum2 = 0
-
-masses = list(fin.readlines())
-map(str.strip, masses)
-
 print(masses)
-print(masses[0])
 print(int(masses[0]))
 
 for mass in masses:

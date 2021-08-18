@@ -1,6 +1,7 @@
-#https://adventofcode.com/2019/day/4
+# https://adventofcode.com/2019/day/4
+
 ans = 0
-for number in range(128392,643281):
+for number in range(128392, 643281):
     preDigit = 0
     chainlen = 0
     double = 0
@@ -19,7 +20,7 @@ for number in range(128392,643281):
         else:
             chainlen = 0
         preDigit = digit
-    if double >=1 and incr == True:
+    if double >= 1 and incr == True:
         ans += 1
 
 print(ans)
