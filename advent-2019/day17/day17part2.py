@@ -99,6 +99,7 @@ class Computer:
             elif op == 3:
                 if self.compInput is not None:
                     self.three(a)
+                    self.compInput = None
                 else:
                     print('waiting for input')
                     break
@@ -170,5 +171,5 @@ for x in routine:
     a.compInput = x
     a.compute()
     message = ''.join([chr(i) for i in a.output])
-    a.output = []
     print(x, message)
+    a.output = []
