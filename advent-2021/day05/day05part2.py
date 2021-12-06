@@ -3,7 +3,8 @@
 with open('day05.in', 'r') as fin:
     pairs = set(tuple(tuple(int(x.strip()) for x in v.split(',')) for v in p.split(' -> ')) for p in fin.readlines())
 
-def myrange(a,b):
+
+def myrange(a, b):
     if a < b:
         for c in range(a, b + 1):
             yield c
@@ -14,10 +15,11 @@ def myrange(a,b):
         while True:
             yield a
 
+
 once = set()
 twice = set()
 for p in pairs:
-    for x,y in zip(myrange(p[0][0], p[1][0]), myrange(p[0][1], p[1][1])):
+    for x, y in zip(myrange(p[0][0], p[1][0]), myrange(p[0][1], p[1][1])):
         if (x, y) in once:
             twice.add((x, y))
         else:
